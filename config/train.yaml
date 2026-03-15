@@ -1,0 +1,26 @@
+defaults:
+  - data: data
+  - _self_
+
+seed: 42
+track: rgb  # rgb | depth | cross
+
+data:
+  eval_csv: data/DB_extracted/train_labels.csv
+  val_mode: train
+
+model:
+  arch: resnet50 # resnet50 | convnext | transformer | osnet
+  lr: 3.5e-4
+  weight_decay: 5e-4
+  margin: 0.3
+  steps_per_epoch: 100 # Will be updated dynamically
+
+trainer:
+  max_epochs: 20
+  accelerator: auto
+  devices: 1
+  log_every_n_steps: 10
+  enable_checkpointing: true
+  precision: 32
+  accumulate_grad_batches: 1
